@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAlicia Ezpeleta</title>
+<link rel="icon" type="image/png" href="./images/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-proyecto">
+
+
+
+
+<!-- Esta MISMA página sirve para los 12 proyectos: los datos salen de projects.js -->
+<a class="volver" href="index.html#trabajos">← VOLVER</a>
+
+<div class="proyecto">
+  <!-- Columna izquierda: se queda fija al hacer scroll -->
+ <aside class="info">
+  <h1 id="titulo"></h1>
+  <p class="caja" id="anio"></p>
+  <p class="caja" id="participan"></p>
+  <p class="caja" id="extra"></p>
+  <p class="texto" id="descripcion"></p>
+</aside>
+
+  <!-- Columna derecha: fotos una debajo de otra -->
+  <div class="galeria" id="galeria"></div>
+</div>
+<!-- Galería ampliada: se abre al hacer clic en una foto o vídeo -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-cerrar" id="lbCerrar" aria-label="Cerrar">&times;</button>
+  <button class="flecha izq" id="lbPrev" aria-label="Anterior">&#8249;</button>
+  <div class="lb-principal" id="lbPrincipal"></div>
+  <button class="flecha der" id="lbNext" aria-label="Siguiente">&#8250;</button>
+  <div class="lb-miniaturas" id="lbMiniaturas"></div>
+</div>
+<script src="projects.js"></script>
+<script src="proyecto.js"></script>
+</body>
+</html>

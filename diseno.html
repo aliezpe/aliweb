@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diseño multimedia · Alicia Ezpeleta</title>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- MENÚ FIJO (igual en todas las páginas) -->
+<nav>
+  <a class="logo" href="index.html"><img src="images/logo.png" alt="Alicia Ezpeleta"></a>
+  <a href="index.html#trabajos">TRABAJOS</a>
+  <a href="diseno.html"class="activo">DISEÑO MULTIMEDIA</a>
+  <a href="audiovisual.html">AUDIOVISUAL</a>
+  <a href="bio.html">BIO</a>
+  <a href="cv.html">CV</a>
+</nav>
+
+<main>
+  <!-- Carrusel: se rellena solo desde diseno.js -->
+  <section id="diseno">
+    <button class="flecha izq" id="prev" aria-label="Anterior">&#8249;</button>
+    <div class="viewport"><div class="pista" id="pista"></div></div>
+    <button class="flecha der" id="next" aria-label="Siguiente">&#8250;</button>
+  </section>
+</main>
+
+<!-- Ventana emergente -->
+<div class="modal" id="modal">
+  <div class="modal-caja">
+    <div class="modal-media" id="modalMedia"></div>
+    <div class="modal-texto">
+      <button class="cerrar" id="cerrar" aria-label="Cerrar">&times;</button>
+      <h3 id="modalTitulo"></h3>
+      <p class="caja" id="modalAnio"></p>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script src="projects.js"></script>
+<script src="diseno.js"></script>
+<script src="menu.js"></script>
+</body>
+</html>

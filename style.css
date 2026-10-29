@@ -1,0 +1,228 @@
+/* ESTILOS DE LA WEB. Cada bloque tiene su comentario. */
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#111;font-family:'Questrial',sans-serif}
+body * {
+    cursor: url("./images/cursor.cur"), auto;
+}
+
+
+/* ===== 2. MENÚ FIJO ===== */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:#fff;border-bottom:1px solid #111;display:flex;justify-content:right;gap:clamp(16px,4vw,64px);padding:36px 50px;overflow-x:auto;white-space:nowrap}
+nav a{color:#111;text-decoration:none;font-size:20px;letter-spacing:.06em}
+nav a:hover{text-decoration:underline}
+nav a.activo{text-decoration:underline}
+
+/* ===== 3. GALERÍA DE PROYECTOS ===== */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#000}
+.card{position:relative;display:block;color:inherit;text-decoration:none}
+.img{position:relative;aspect-ratio:640/755;overflow:hidden;background:var(--bg)}
+.img img{width:100%;height:100%;object-fit:cover;display:block}
+.glass{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;background:rgba(255, 255, 255, 0.459);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .3s}
+.card:hover .glass,.card:focus-within .glass{opacity:1}
+.glass span{color:#111;font-size:30px;padding:6px 10px;max-width:90%}
+.label{display:flex;justify-content:space-between;align-items:center;gap:12px;height:40px;background:#fff;color:#111;padding:0 16px;font-size:clamp(12px,1.4vw,20px);text-transform:uppercase;border-top:1px solid #000;white-space:nowrap;overflow:hidden}
+.label span:last-child{overflow:hidden;text-overflow:ellipsis}
+section[id]{min-height:40vh;padding:60px 24px}
+@media(max-width:700px){.label{font-size:10px;padding:0 6px;height:30px}.glass{padding:8px;gap:4px}.glass span{font-size:9px;padding:3px 5px}}
+
+/* ===== 4. PÁGINA DE PROYECTO ===== */
+.pagina-proyecto{background:#fff}
+.volver{position:fixed;top:16px;right:24px;z-index:5;color:#111;font-size:13px;text-decoration:none;background:#fff;padding:4px 8px}
+.volver:hover{text-decoration:underline}
+.proyecto{display:flex;gap:6vw;padding:24px}
+.info{position:sticky;top:24px;align-self:flex-start;width:33vw;min-width:240px;max-height:calc(100vh - 48px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:transparent transparent}
+.info.scrolling{scrollbar-color:#111 transparent}
+
+/* columna fija */
+.info h1{margin:0 0 20px;font-weight:500;font-size:clamp(28px,4vw,56px);line-height:1.05}
+.texto{margin:45px 0 0;font-size:13px;line-height:1.6;text-align:left}
+.galeria{flex:1;display:flex;flex-direction:column;gap:24px;max-width:900px;margin-left:auto}
+.galeria{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px;max-width:900px;margin-left:auto}.foto{background:#ddd}
+.foto{display:flex;justify-content:flex-end;background:transparent}
+.foto img,.foto video{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100vh - 48px);background:transparent}
+
+/* ===== 5. DISEÑO GRÁFICO (carrusel) ===== */
+#diseno{position:relative;padding:0;margin-top:80px;min-height:0;border-bottom:1px solid #000;border-top:1px solid #000;background:#fff}
+.viewport{overflow:hidden}
+.pista{display:flex;transition:transform .6s ease}
+.item{flex:0 0 calc(100% / 3);min-width:0;cursor:pointer;border-right:1px solid #000}
+.item .img video{width:100%;height:100%;object-fit:cover;display:block}
+.flecha{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;border:1px solid #000;background:#fff;color:#111;font:inherit;font-size:28px;line-height:1;cursor:pointer;transition:opacity .3s}
+.flecha.izq{left:16px}
+.flecha.der{right:16px}
+.flecha.oculta{opacity:0;pointer-events:none}
+.flecha:hover{background:#111;color:#fff}
+
+/* Ventana emergente con fondo de cristal: cartel y texto en dos cajas separadas */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(255,255,255,.25);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.modal.abierto{display:flex}
+.modal-caja{display:flex;align-items:flex-end;gap:20px;width:auto;max-width:95vw;max-height:90vh;background:none;border:0}
+.modal-media{flex:0 1 auto;min-width:0;background:none;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.modal-media img,.modal-media video{display:block;max-width:60vw;max-height:85vh;width:auto;height:auto;object-fit:contain;border:1px solid #000;background:#000}
+.modal-texto{position:relative;flex:0 1 auto;width:auto;min-width:320px;max-width:45vw;max-height:none;overflow-y:visible;box-sizing:border-box;background:#fff;border:1px solid #000;padding:48px 24px 24px;font-size:15px;line-height:1.6;overflow-wrap:break-word}
+.modal-texto h3{margin:0 0 16px;font-weight:500;font-size:clamp(20px,2.4vw,32px);line-height:1.1}
+.cerrar{position:absolute;top:8px;right:12px;border:0;background:none;font:inherit;font-size:34px;line-height:1;cursor:pointer;color:#111}
+@media(max-width:800px){.modal-caja{flex-direction:column;align-items:stretch;width:100%;max-width:92vw;max-height:90vh;overflow-y:auto}.modal-media{justify-content:flex-start}.modal-media img,.modal-media video{max-width:92vw;max-height:52vh}.modal-texto{width:100%;min-width:0;max-width:100%;max-height:none;overflow-y:visible;box-sizing:border-box}}
+.modal-texto a{color:#111;text-decoration:underline;word-break:break-all}
+
+/* ===== 7. GALERÍA AMPLIADA DEL PROYECTO ===== */
+.foto img,.foto video{cursor:pointer}
+.lightbox{position:fixed;inset:0;z-index:60;display:none;flex-direction:column;background:rgba(255,255,255,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.lightbox.abierto{display:flex}
+.lb-principal{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:56px 90px 12px}
+.lb-principal img,.lb-principal video{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.lb-cerrar{position:absolute;top:10px;right:20px;z-index:3;border:0;background:none;font:inherit;font-size:40px;line-height:1;cursor:pointer;color:#111}
+.lb-miniaturas{display:flex;gap:8px;justify-content:center;overflow-x:auto;padding:12px 16px 16px}
+.lb-mini{flex:0 0 auto;width:72px;height:72px;padding:0;border:2px solid transparent;background:#ddd;cursor:pointer;opacity:.55;transition:opacity .2s}
+.lb-mini.activa{border-color:#111;opacity:1}
+.lb-mini img,.lb-mini video{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:700px){.lb-principal{padding:56px 12px 8px}.lb-mini{width:52px;height:52px}}
+.lb-mini{position:relative}
+.vthumb:not([src]){visibility:hidden}
+.lb-play{position:absolute;left:4px;bottom:4px;width:18px;height:18px;display:flex;align-items:center;justify-content:center;background:#fff;color:#111;font-size:9px;line-height:1}
+
+/* ===== AUDIOVISUAL ===== */
+#audiovisual{padding:0;min-height:0}
+.av-proyecto{display:flex;gap:4vw;align-items:flex-start;padding:80px 24px;border-bottom:1px solid #111}
+.av-info{position:sticky;top:140px;align-self:flex-start;width:25vw;min-width:240px}
+.av-info h2{margin:0 0 20px;font-weight:500;font-size:clamp(24px,3vw,44px);line-height:1.05}
+.av-texto{margin:20px 0;font-size:13px;line-height:1.6;white-space:pre-line}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{border:1px solid #111;padding:4px 10px;font-size:11px;letter-spacing:.04em}
+.av-carrusel{position:relative;flex:1;min-width:0}
+.av-viewport{overflow:hidden}
+.av-pista{display:flex;transition:transform .5s ease}
+.av-slide{flex:0 0 100%;min-width:0;aspect-ratio:16/10;background:#fff}
+.av-slide img,.av-slide video{width:100%;height:100%;object-fit:contain;display:block}
+.av-contador{position:absolute;bottom:12px;right:16px;background:#fff;padding:2px 8px;font-size:12px}
+@media(max-width:800px){.av-proyecto{flex-direction:column}.av-info{position:static;width:100%}}
+#extra{border:1px solid #111;padding:10px 12px;margin:0 0 10px;font-size:13px;line-height:1.5;width:fit-content;max-width:100%}
+
+/* ===== CV ===== */
+.cv{padding:60px 24px}
+.cv-seccion{padding:40px 0}
+.cv-seccion:first-child{padding-top:0}
+.cv-seccion + .cv-seccion{border-top:1px solid #111}
+.cv-seccion h2{margin:0 0 24px;font-weight:500;font-size:clamp(22px,2.6vw,36px)}
+.cv-fila{display:grid;grid-template-columns:30% minmax(0,1fr) 110px 90px;gap:20px;padding:7px 0;font-size:14px;line-height:1.4}
+.cv-titulo{font-weight:700}
+.cv-titulo small{display:block;margin-top:3px;font-size:12px;font-weight:400;opacity:.7}
+.cv-anio{text-align:right}
+.cv-links{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.cv-links a{color:#111;text-decoration:underline}
+@media(max-width:800px){.cv-fila{grid-template-columns:1fr;gap:2px;padding:10px 0}.cv-anio,.cv-links{text-align:left;align-items:flex-start}}
+
+/* Logo del menú, pegado a la izquierda */
+nav a.logo{position:absolute;left:35px;top:50%;transform:translateY(-50%);display:block;line-height:0}
+nav a.logo:hover{text-decoration:none}
+nav a.logo img{height: 90px;width:auto;display:block}
+@media(max-width:900px){nav a.logo{position:static;transform:none;margin-right:auto}}
+html{scrollbar-gutter:stable}
+
+/* ===== BIO ===== */
+.bio{padding:0 24px}
+.bio-bloque{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:40px;align-items:flex-end;padding:70px 0}
+.bio-bloque + .bio-bloque{border-top:1px solid #111}
+.bio-texto{width:40vw;min-width:260px}
+.bio-texto h2{margin:0 0 24px;font-weight:500;font-size:clamp(28px,4vw,56px);line-height:1.05}
+.bio-texto p{margin:0 0 1.2em;font-size:14px;line-height:1.65}
+.bio-texto p:last-child{margin-bottom:0}
+.bio-contacto{font-size:13px !important}
+.bio-contacto a{color:#111;text-decoration:underline}
+.bio-fotos{flex:0 1 auto;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.bio-fotos img{display:block;width:auto;height:auto;max-width:500px;max-height:calc(100vh - 48px)}
+@media(max-width:800px){.bio-bloque{flex-direction:column;align-items:flex-start}.bio-texto{width:100%}}
+/* ===== CURSOR PARA BOTONES Y ENLACES ===== */
+button,
+button *,
+input[type="button"],
+input[type="submit"],
+a,
+[role="button"] {
+    cursor: url("./images/click.cur"), pointer;
+}
+/* ===== CURSOR PERSONALIZADO PARA ELEMENTOS INTERACTIVOS ===== */
+button,
+button *,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+.flecha,
+.cerrar,
+.lb-cerrar,
+.lb-mini,
+.item,
+.volver {
+    cursor: url("./images/click.cur"), pointer !important;
+}
+/* ===== VERSIÓN MÓVIL ===== */
+.burger{display:none}
+.item-info{display:none}
+
+/* --- Menú: logo a la izquierda y tres rayas a la derecha --- */
+@media(max-width:900px){
+  nav{flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:0;padding:12px 16px;overflow:visible}
+  nav a.logo{position:static;transform:none;margin-right:auto;order:0}
+  nav a.logo img{height:46px}
+  .burger{order:1;display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;border:0;background:none;cursor:pointer}
+  .burger span{display:block;height:2px;background:#111;transition:transform .25s,opacity .25s}
+  nav.abierto .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  nav.abierto .burger span:nth-child(2){opacity:0}
+  nav.abierto .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  nav a:not(.logo){display:none;order:2;width:100%;padding:14px 0;border-top:1px solid #111;font-size:18px}
+  nav.abierto a:not(.logo){display:block}
+}
+
+/* --- Resto de la página --- */
+@media(max-width:800px){
+  html{scroll-padding-top:80px}
+
+  /* INICIO: 2 columnas x 6 filas */
+  .hero{height:70vh;min-height:320px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .label{font-size:11px;padding:0 8px;height:34px}
+
+  /* PROYECTO: primero el texto, debajo las fotos */
+  .proyecto{flex-direction:column;gap:28px;padding:64px 16px 40px}
+  .info{position:static;width:100%;min-width:0;max-height:none;overflow:visible}
+  .texto{margin-top:24px}
+  .galeria{width:100%;max-width:100%;margin-left:0}
+  .foto{justify-content:flex-start}
+  .foto img,.foto video{width:100%;max-height:none}
+
+  /* DISEÑO: 1 cartel por pantalla, texto debajo, sin ventana emergente */
+  #diseno{margin-top:0}
+  .item{flex:0 0 100%;border-right:0;cursor:default}
+  .item-info{display:block;padding:16px;font-size:14px;line-height:1.6;white-space:pre-line}
+  .item-info p{margin:0 0 10px}
+  .item-info a{color:#111;text-decoration:underline;word-break:break-all}
+  #diseno .flecha{top:59vw}
+  .flecha{width:40px;height:40px;font-size:24px}
+  .flecha.izq{left:8px}
+  .flecha.der{right:8px}
+
+  /* AUDIOVISUAL: texto arriba, carrusel debajo */
+  .av-proyecto{flex-direction:column;padding:40px 16px;gap:24px}
+  .av-info{position:static;width:100%;min-width:0}
+
+  /* BIO: texto arriba, foto debajo */
+  .bio{padding:0 16px}
+  .bio-bloque{flex-direction:column;align-items:flex-start;padding:40px 0;gap:24px}
+  .bio-texto{width:100%;min-width:0}
+  .bio-fotos{width:100%}
+  .bio-fotos img{width:100%;max-width:100%;max-height:none}
+
+  /* CV: cada entrada en tres líneas, sin cortes */
+  .cv{padding:30px 16px}
+  .cv-fila{display:grid;grid-template-columns:1fr auto;grid-template-areas:"titulo titulo" "lugar lugar" "anio links";gap:2px 12px;padding:12px 0}
+  .cv-titulo{grid-area:titulo}
+  .cv-lugar{grid-area:lugar;opacity:.8}
+  .cv-anio{grid-area:anio;text-align:left}
+  .cv-links{grid-area:links;flex-direction:row;gap:12px;align-items:flex-start}
+}
+
+/* En pantallas táctiles no hay hover: se quita el cristal de la galería */
+@media(hover:none){.glass{display:none}}
